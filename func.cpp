@@ -12,7 +12,6 @@
 	return a;
 }
 
-
 double numb_check() {
 	double a;
 	while (!(cin >> a) || (cin.peek() != '\n'))
@@ -23,7 +22,6 @@ double numb_check() {
 	}
 	return a;
 }
-
 
 bool file_name_check(string filename) {
 	size_t found = filename.find_last_of("\\");
@@ -37,7 +35,6 @@ bool file_name_check(string filename) {
 	file.close();
 	return false;
 }
-
 
 bool file_check_size(string pFile) {
 	ifstream file_check_size;
@@ -54,7 +51,6 @@ bool file_check_size(string pFile) {
 	}
 }
 
-
 bool error_check() {
 	if (cin.fail())
 	{
@@ -65,7 +61,6 @@ bool error_check() {
 	}
 	return 1;
 }
-
 
 void print_mat(int** array, int m, int n) {
 	for (int i = 0; i < m; i++) {
@@ -78,7 +73,6 @@ void print_mat(int** array, int m, int n) {
 	cout << endl;
 }
 
-
 int** create_mat(int m, int n) {
 	int** array = new int* [m];
 	for (int i = 0; i < m; i++) {
@@ -86,7 +80,6 @@ int** create_mat(int m, int n) {
 	}
 	return array;
 }
-
 
 void keyboard_input(int** array, int m, int n) {
 	for (int i = 0; i < m; i++) {
@@ -109,7 +102,10 @@ void bubble_sort(int** array, int m, int n, int& compare, int& change) {
 			}
 		}
 		int size = static_cast<int>(temp_mat.size());
-		for (int l = 0; l < size; l++) {
+		for (int l = 0; l < size - 1; l++) {
+			if (l == 1 && change == 0) {
+				break;
+			}
 			for (int i = 0; i < size - 1 - l; i++) {
 				compare++;
 				next = i + 1;
@@ -118,7 +114,7 @@ void bubble_sort(int** array, int m, int n, int& compare, int& change) {
 					change++;
 				}				
 			}
-		}		
+		}	
 		for (int i = 0; i < static_cast<int>(index_mat.size()); i++) {		
 				array[index_mat[i]][j] = temp_mat[i];		
 		}
@@ -167,12 +163,15 @@ void insertion_sort(int** array, int m, int n, int& compare, int& change) {
 				index_mat.push_back(i);
 			}
 		}
-		for (int i = 1; i < static_cast<int>(temp_mat.size()); i++) {		
+	  for (int i = 1; i < static_cast<int>(temp_mat.size()); i++) {		
 			for (int l = i; l > 0; l--) {
 				compare++;
 				if (temp_mat[l - 1] < temp_mat[l]) {
 					change++;
 					swap(temp_mat[l - 1], temp_mat[l]);
+				}
+				else {
+					break;
 				}
 			}
 		}		
@@ -235,51 +234,22 @@ void quick_sort(int** array, int m, int n, int& compare, int& change) {
 	}
 }
 
-
-/*void qsort_recursive(vector<int>& temp_mat, int low, int high, int& compare, int& change) {
-	int i = low;
-	int j = high;
-	int pivot = temp_mat[(i + j) / 2];
-	while (i <= j) {	
-		while (temp_mat[i] > pivot) {
-			compare++;
-			i++;
-		}
-		//compare++;
-		while (temp_mat[j] < pivot) {
-			compare++;
-			j--;
-		}
-	//	compare++;
-		if (i <= j)	{
-			swap(temp_mat[i], temp_mat[j]);
-			i++;
-			j--;
-			change++;
-		}
-	}
-	if (j > low)
-		qsort_recursive(temp_mat, low, j, compare, change);
-	if (i < high)
-		qsort_recursive(temp_mat, i, high, compare, change);
-}*/
-
-void qsort_recursive(vector<int>& tempMatrix, int left, int right, int& compare, int& change) {
+void qsort_recursive(vector<int>& temp_mat, int left, int right, int& compare, int& change) {
 	int l = left;
 	int r = right;
 	int temp, middle;
 	bool whileOne, whileTwo;
-	middle = tempMatrix[(l + r) / 2];
+	middle = temp_mat[(l + r) / 2];
 	while (l <= r) {
 		whileOne = false; whileTwo = false;
-		while ((tempMatrix[l] > middle) && (l >= left)) {
+		while ((temp_mat[l] > middle) && (l >= left)) {
 			l++;
 			whileOne = true;
 			compare++;
 		}
 		if (whileOne == false)
 			compare++;
-		while ((tempMatrix[r] < middle) && (r <= right)) {
+		while ((temp_mat[r] < middle) && (r <= right)) {
 			r--;
 			whileTwo = true;
 			compare++;
@@ -287,10 +257,8 @@ void qsort_recursive(vector<int>& tempMatrix, int left, int right, int& compare,
 		if (whileTwo == false)
 			compare++;
 		if (l <= r) {
-			if (tempMatrix[l] != tempMatrix[r]) {
-				temp = tempMatrix[l];
-				tempMatrix[l] = tempMatrix[r];
-				tempMatrix[r] = temp;
+			if (temp_mat[l] != temp_mat[r]) {
+				swap(temp_mat[r], temp_mat[l]);				
 				change++;
 			}
 			l++;
@@ -298,9 +266,9 @@ void qsort_recursive(vector<int>& tempMatrix, int left, int right, int& compare,
 		}
 	}
 	if (r > left)
-		qsort_recursive(tempMatrix, left, r, compare, change);
+		qsort_recursive(temp_mat, left, r, compare, change);
 	if (l < right)
-		qsort_recursive(tempMatrix, l, right, compare, change);
+		qsort_recursive(temp_mat, l, right, compare, change);
 }
 
 void print_source(int** array, int m, int n) {
@@ -339,11 +307,12 @@ void print_source(int** array, int m, int n) {
 
 void save_source(string inpath, int** array, int modout, int m, int n) {
 	ofstream fout;
-	if (modout == 1) {
+	int rewrite = 1, add = 2;
+	if (modout == rewrite) {
 		fout.open(inpath, ios::out);
 		fout << " " << endl;
 	}
-	if (modout == 2) {
+	if (modout == add) {
 		fout.open(inpath, ios::app);
 		fout << " " << endl;
 	}
@@ -415,7 +384,7 @@ void print_result(string outpath, int modout, int** array, int** arr, int m, int
 	fout << "Исходная матрица: " << endl;
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
-			fout << setw(5) << array[i][j];
+			fout << setw(10) << array[i][j];
 		}
 		fout << endl;
 	}
@@ -423,7 +392,7 @@ void print_result(string outpath, int modout, int** array, int** arr, int m, int
 	fout << "Отсортированная матрица: " << endl;
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
-			fout << setw(5) << arr[i][j];
+			fout << setw(10) << arr[i][j];
 		}
 		fout << endl;
 	}
@@ -465,11 +434,13 @@ bool file_exist(string path) {
 
 
 void random_input(int** array, int m, int n) {
-//	int max, min;
 	srand(time(NULL));
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
 			array[i][j] = rand();
+			 while (array[i][j] % 2 != 0) {
+				 array[i][j] = rand();
+			}
 		}
 		cout << endl;
 	}

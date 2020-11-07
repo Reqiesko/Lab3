@@ -3,7 +3,7 @@
 #include "ui.h"
 
 
-const int ignor = 32767;
+
 
 void keyboard_way() {
 	stats_of_method bubble_sort_st;
@@ -11,7 +11,7 @@ void keyboard_way() {
 	stats_of_method insertion_sort_st;
 	stats_of_method shell_sort_st;
 	stats_of_method quick_sort_st;
-	int m, n;
+	int m, n, count = 0;
 	string outpath;
 	string inpath;
 	cout << "Введите количество строк: " << endl;
@@ -28,7 +28,17 @@ void keyboard_way() {
 	}		
 	int** unsorted_mat = create_mat(m, n);
 	keyboard_input(unsorted_mat, m, n);		
-	
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (unsorted_mat[i][j] % 2 == 0) {
+				count++;
+			}
+		}
+	}
+	if (count < 2) {
+		cout << "Необходимо минимум 2 четных элемента, для сортировки!" << endl;
+		main_menu();
+	}
 	int** temp_mat = create_mat(m, n);
 	int** sorted_mat = create_mat(m, n);
 	for (int i = 0; i < m; i++) {
@@ -40,7 +50,7 @@ void keyboard_way() {
 	cout << "Исходный массив: " << endl;
 	print_mat(unsorted_mat, m, n);
 	cout << "Сохранить исходные данные в файл? " << endl;
-	if (save_result_q() == 1) {
+	if (save_result_q() == yes) {
 		cout << "Введите путь к файлу вывода: " << endl;
 		print_source(unsorted_mat, m, n);
 	}
@@ -100,7 +110,7 @@ void keyboard_way() {
 	cout << endl;
 
 	cout << "Сохранить результат в файл? " << endl;
-	if (save_result_q() == 1) {
+	if (save_result_q() == yes) {
 		cout << "Введите путь к файлу вывода: " << endl;
 		print_result_in_file(inpath, outpath, unsorted_mat, sorted_mat, m, n, STATS);
 	}
@@ -121,6 +131,7 @@ void keyboard_way() {
 }
 
 void file_way() {
+	const int ignor = 32767;
 	stats_of_method bubble_sort_st;
 	stats_of_method selection_sort_st;
 	stats_of_method insertion_sort_st;
@@ -148,7 +159,6 @@ void file_way() {
 	}
 	else {
 		int temp_int, count = 0;
-		double temp_d;
 		if (file_check_size(inpath) == true) {
 			cout << "Ошибка! Файл пуст!" << endl;
 			cin.clear();
@@ -199,7 +209,18 @@ void file_way() {
 				fin >> unsorted_mat[i][j];
 			}
 		}
-
+		count = 0;
+		for (int i = 0; i < m; i++) {
+			for (int j = 0; j < n; j++) {
+				if (unsorted_mat[i][j] % 2 == 0) {
+					count++;
+				}
+			}
+		}
+		if (count < 2) {
+			cout << "Необходимо минимум 2 четных элемента, для сортировки!" << endl;
+			main_menu();
+		}
 		int** temp_mat = create_mat(m, n);
 		int** sorted_mat = create_mat(m, n);
 		for (int i = 0; i < m; i++) {
@@ -266,7 +287,7 @@ void file_way() {
 		cout << endl;
 
 		cout << "Сохранить результат в файл? " << endl;
-		if (save_result_q() == 1) {
+		if (save_result_q() == yes) {
 			cout << "Введите путь к файлу вывода: " << endl;
 			print_result_in_file(inpath, outpath, unsorted_mat, sorted_mat, m, n, STATS);
 		}
@@ -321,7 +342,7 @@ void random_way() {
 	cout << "Исходный массив: " << endl;
 	print_mat(unsorted_mat, m, n);
 	cout << "Сохранить исходные данные в файл? " << endl;
-	if (save_result_q() == 1) {
+	if (save_result_q() == yes) {
 		cout << "Введите путь к файлу вывода: " << endl;
 		print_source(unsorted_mat, m, n);
 	}
@@ -382,7 +403,7 @@ void random_way() {
 	cout << endl;
 
 	cout << "Сохранить результат в файл? " << endl;
-	if (save_result_q() == 1) {
+	if (save_result_q() == yes) {
 		cout << "Введите путь к файлу вывода: " << endl;
 		print_result_in_file(inpath, outpath, unsorted_mat, sorted_mat, m, n, STATS);
 	}

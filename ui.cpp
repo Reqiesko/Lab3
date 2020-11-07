@@ -4,7 +4,7 @@
 #include "module_tests.h"
 
 
-const int ignor = 32767;
+
 
 void greeting() { 
 	cout << "Эта программа сортирует матрицу различными методами и " << endl;
@@ -20,6 +20,7 @@ void greeting() {
 
 void main_menu() {
 	int var;
+	const int ignor = 32767;
 	cout << endl;
 	while (true) {
 		cout << "Menu" << endl;
@@ -68,6 +69,7 @@ void main_menu() {
 
 int save_result_q() {
 	int var;
+	const int ignor = 32767;
 	int way = 0;
 	bool sw = true;
 	while (sw) {
@@ -99,6 +101,7 @@ int save_result_q() {
 
 
 int wtdw_file(string& pFile) {
+	const int ignor = 32767;
 	bool d = true;
 	ifstream foutcheck;
 	int del;
