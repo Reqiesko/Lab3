@@ -52,10 +52,11 @@ bool file_check_size(string pFile) {
 }
 
 bool error_check() {
+	const int ignore = 32767;
 	if (cin.fail())
 	{
 		cin.clear();
-		cin.ignore(32767, '\n');
+		cin.ignore(ignore, '\n');
 		cout << "Пожалуйста введите цифру из ниже указанных! " << endl;
 		return 0;
 	}
@@ -440,7 +441,7 @@ void random_input(int** array, int m, int n) {
 			array[i][j] = rand();
 			 while (array[i][j] % 2 != 0) {
 				 array[i][j] = rand();
-			}
+			 }
 		}
 		cout << endl;
 	}

@@ -12,17 +12,18 @@ void keyboard_way() {
 	stats_of_method shell_sort_st;
 	stats_of_method quick_sort_st;
 	int m, n, count = 0;
+	const int min_rows = 2, min_cols = 1, min_ev_num = 2;
 	string outpath;
 	string inpath;
 	cout << "Введите количество строк: " << endl;
 	m = number_check();
-	while (m < 2) {
+	while (m < min_rows) {
 		cout << "Ошибка! Количество строк не может быть меньше 2. \nВведите число: " << endl;
 		m = number_check();
 	}
 	cout << "Введите количество столбцов: " << endl;
 	n = number_check();
-	while (n < 1) {
+	while (n < min_cols) {
 		cout << "Ошибка! Количество столбцов не может быть меньше 1. \nВведите число: " << endl;
 		n = number_check();
 	}		
@@ -35,7 +36,7 @@ void keyboard_way() {
 			}
 		}
 	}
-	if (count < 2) {
+	if (count < min_ev_num) {
 		cout << "Необходимо минимум 2 четных элемента, для сортировки!" << endl;
 		main_menu();
 	}
@@ -115,7 +116,7 @@ void keyboard_way() {
 		print_result_in_file(inpath, outpath, unsorted_mat, sorted_mat, m, n, STATS);
 	}
 	system("pause");
-	if (n > 1) {
+	if (n > min_cols) {
 		for (int i = 0; i < m; i++) {
 			delete[] unsorted_mat[i];
 			delete[] temp_mat[i];
@@ -131,7 +132,7 @@ void keyboard_way() {
 }
 
 void file_way() {
-	const int ignor = 32767;
+	const int ignor = 32767, r_and_c = 2, min_ev_num = 2, min_cols = 1;
 	stats_of_method bubble_sort_st;
 	stats_of_method selection_sort_st;
 	stats_of_method insertion_sort_st;
@@ -167,7 +168,7 @@ void file_way() {
 			main_menu();
 		}
 		while (fin) {
-			while (count < 2) {				
+			while (count < r_and_c) {				
 				fin >> temp_int;
 				if (fin.fail() && !fin.eof()) {
 					cout << "Ошибка! Файл содержит некорректные данные. " << endl;
@@ -217,7 +218,7 @@ void file_way() {
 				}
 			}
 		}
-		if (count < 2) {
+		if (count < min_ev_num) {
 			cout << "Необходимо минимум 2 четных элемента, для сортировки!" << endl;
 			main_menu();
 		}
@@ -292,7 +293,7 @@ void file_way() {
 			print_result_in_file(inpath, outpath, unsorted_mat, sorted_mat, m, n, STATS);
 		}
 		system("pause");
-		if (n > 1) {
+		if (n > min_cols) {
 			for (int i = 0; i < m; i++) {
 				delete[] unsorted_mat[i];
 				delete[] temp_mat[i];
@@ -317,15 +318,16 @@ void random_way() {
 	string outpath;
 	string inpath;
 	int m, n;
+	const int min_rows = 2, min_cols = 1;
 	cout << "Введите количество строк: " << endl;
 	m = number_check();
-	while (m < 2) {
+	while (m < min_rows) {
 		cout << "Ошибка! Количество строк не может быть меньше 2. \nВведите число: " << endl;
 		m = number_check();
 	}
 	cout << "Введите количество столбцов: " << endl;
 	n = number_check();
-	while (n < 1) {
+	while (n < min_cols) {
 		cout << "Ошибка! Количество столбцов не может быть меньше 1. \nВведите число: " << endl;
 		n = number_check();
 	}
@@ -408,7 +410,7 @@ void random_way() {
 		print_result_in_file(inpath, outpath, unsorted_mat, sorted_mat, m, n, STATS);
 	}
 	system("pause");
-	if (n > 1) {
+	if (n > min_cols) {
 		for (int i = 0; i < m; i++) {
 			delete[] unsorted_mat[i];
 			delete[] temp_mat[i];

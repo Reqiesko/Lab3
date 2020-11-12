@@ -3,9 +3,6 @@
 #include "ex_work.h"
 #include "module_tests.h"
 
-
-
-
 void greeting() { 
 	cout << "Эта программа сортирует матрицу различными методами и " << endl;
 	cout << "выводит таблицу эффективности разных методов." << endl;
@@ -70,7 +67,6 @@ void main_menu() {
 int save_result_q() {
 	int var;
 	const int ignor = 32767;
-	int way = 0;
 	bool sw = true;
 	while (sw) {
 		cout << "1. Да " << endl;
@@ -82,12 +78,11 @@ int save_result_q() {
 		cin.ignore(ignor, '\n');
 		switch (var) {
 			case yes: {
-				way = 1;
-				sw = false;
+				return yes;
 				break;
 			}
 			case no: {
-				sw = false;
+				return no;
 				break;
 			}
 			default: {
@@ -96,7 +91,6 @@ int save_result_q() {
 		}
 		cin.clear();
 	}
-	return way;
 }
 
 

@@ -11,9 +11,10 @@ int** copy_mat(int** array, int m, int n) {
 	return arr;
 }
 
-const int count_of_tests = 33;
-const int r1 = 2, c1 = 2, r2 = 3, c2 = 2, r3 = 2, c3 = 3, r4 = 3, c4 = 3, r5 = 4, c5 = 2;
+
 void module_tests() {
+	const int count_of_tests = 33;
+	const int r1 = 2, c1 = 2, r2 = 3, c2 = 2, r3 = 2, c3 = 3, r4 = 3, c4 = 3, r5 = 4, c5 = 2;
 	system("cls");
 	int count = 0, i, j;
 	int compare = 0, change = 0;
