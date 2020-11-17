@@ -91,6 +91,7 @@ int save_result_q() {
 		}
 		cin.clear();
 	}
+	return 0;
 }
 
 

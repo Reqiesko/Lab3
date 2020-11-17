@@ -52,15 +52,15 @@ bool file_check_size(string pFile) {
 }
 
 bool error_check() {
-	const int ignore = 32767;
+	const int ignored = 32767;
 	if (cin.fail())
 	{
 		cin.clear();
-		cin.ignore(ignore, '\n');
+		cin.ignore(ignored, '\n');
 		cout << "Пожалуйста введите цифру из ниже указанных! " << endl;
-		return 0;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 void print_mat(int** array, int m, int n) {
@@ -238,7 +238,7 @@ void quick_sort(int** array, int m, int n, int& compare, int& change) {
 void qsort_recursive(vector<int>& temp_mat, int left, int right, int& compare, int& change) {
 	int l = left;
 	int r = right;
-	int temp, middle;
+	int middle;
 	bool whileOne, whileTwo;
 	middle = temp_mat[(l + r) / 2];
 	while (l <= r) {
@@ -374,11 +374,12 @@ void print_result_in_file(string inpath, string& outpath, int** array, int** arr
 
 void print_result(string outpath, int modout, int** array, int** arr, int m, int n, struct stats_of_all_methods STATS){
 	ofstream fout;
-	if (modout == 1) {
+	int rewrite = 1, add = 2;
+	if (modout == rewrite) {
 		fout.open(outpath, ios::out);
 		fout << " " << endl;
 	}
-	if (modout == 2) {
+	if (modout == add) {
 		fout.open(outpath, ios::app);
 		fout << " " << endl;
 	}
@@ -435,7 +436,7 @@ bool file_exist(string path) {
 
 
 void random_input(int** array, int m, int n) {
-	srand(time(NULL));
+	srand(static_cast<unsigned int>(time(NULL)));
 	for (int i = 0; i < m; i++) {
 		for (int j = 0; j < n; j++) {
 			array[i][j] = rand();
