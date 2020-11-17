@@ -48,11 +48,10 @@ void main_menu() {
 			}
 			case test: {
 				module_tests();
-				main_menu();
+				break;
 			}
 			case out: {
-				cout << "Программа завершена." << endl;
-				exit(0);
+				cout << "Программа завершена." << endl;	
 				break;
 			}
 			default: {
@@ -60,6 +59,9 @@ void main_menu() {
 			}
 		}
 		cin.clear();
+		if (var == out) {
+			break;
+		}
 	}
 }
 

@@ -128,7 +128,6 @@ void keyboard_way() {
 		delete[] temp_mat;
 		delete[] sorted_mat;
 	}
-	main_menu();
 }
 
 void file_way() {
@@ -305,7 +304,6 @@ void file_way() {
 			delete[] temp_mat;
 			delete[] sorted_mat;
 		}
-		main_menu();
 	}
 }
 
@@ -422,5 +420,4 @@ void random_way() {
 		delete[] temp_mat;
 		delete[] sorted_mat;
 	}
-	main_menu();
 }
