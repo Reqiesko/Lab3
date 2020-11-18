@@ -131,7 +131,7 @@ void keyboard_way() {
 }
 
 void file_way() {
-	const int ignor = 32767, r_and_c = 2, min_ev_num = 2, min_cols = 1;
+	const int r_and_c = 2, min_ev_num = 2, min_cols = 1;
 	stats_of_method bubble_sort_st;
 	stats_of_method selection_sort_st;
 	stats_of_method insertion_sort_st;
@@ -154,7 +154,7 @@ void file_way() {
 	if (!fin.is_open()) {
 		cout << "Ошибка! Не удаётся открыть файл!" << endl;
 		cin.clear();
-		cin.ignore(ignor, '\n');
+		cin.ignore(INT_MAX, '\n');
 		main_menu();
 	}
 	else {
@@ -162,7 +162,7 @@ void file_way() {
 		if (file_check_size(inpath) == true) {
 			cout << "Ошибка! Файл пуст!" << endl;
 			cin.clear();
-			cin.ignore(ignor, '\n');
+			cin.ignore(INT_MAX, '\n');
 			fin.close();
 			main_menu();
 		}
@@ -172,7 +172,7 @@ void file_way() {
 				if (fin.fail() && !fin.eof()) {
 					cout << "Ошибка! Файл содержит некорректные данные. " << endl;
 					cin.clear();
-					cin.ignore(ignor, '\n');
+					cin.ignore(INT_MAX, '\n');
 					fin.close();
 					main_menu();
 				}
@@ -186,7 +186,7 @@ void file_way() {
 				if (fin.fail()) {
 					cout << "Ошибка! Файл содержит некорректные данные. " << endl;
 					cin.clear();
-					cin.ignore(ignor, '\n');
+					cin.ignore(INT_MAX, '\n');
 					fin.close();
 					main_menu();
 				}	

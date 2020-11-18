@@ -52,11 +52,10 @@ bool file_check_size(string pFile) {
 }
 
 bool error_check() {
-	const int ignor = 32767;
 	if (cin.fail())
 	{
 		cin.clear();
-		cin.ignore(ignor, '\n');
+		cin.ignore(INT_MAX, '\n');
 		cout << "Пожалуйста введите цифру из ниже указанных! " << endl;
 		return false;
 	}

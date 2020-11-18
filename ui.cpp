@@ -17,7 +17,6 @@ void greeting() {
 
 void main_menu() {
 	int var;
-	const int ignor = 32767;
 	cout << endl;
 	while (true) {
 		cout << "Menu" << endl;
@@ -32,7 +31,7 @@ void main_menu() {
 		if (!error_check()) {
 			continue;
 		}
-		cin.ignore(ignor, '\n');
+		cin.ignore(INT_MAX, '\n');
 		switch (var) {
 			case keyboard: {
 				keyboard_way();
@@ -68,7 +67,6 @@ void main_menu() {
 
 int save_result_q() {
 	int var;
-	const int ignor = 32767;
 	bool sw = true;
 	while (sw) {
 		cout << "1. Да " << endl;
@@ -77,7 +75,7 @@ int save_result_q() {
 		if (!error_check()) {
 			continue;
 		}
-		cin.ignore(ignor, '\n');
+		cin.ignore(INT_MAX, '\n');
 		switch (var) {
 			case yes: {
 				return yes;
@@ -98,7 +96,6 @@ int save_result_q() {
 
 
 int wtdw_file(string& pFile) {
-	const int ignor = 32767;
 	bool d = true;
 	ifstream foutcheck;
 	int del;
@@ -113,7 +110,7 @@ int wtdw_file(string& pFile) {
 		if (!error_check()) {
 			continue;
 		}
-		cin.ignore(ignor, '\n');
+		cin.ignore(INT_MAX, '\n');
 		switch (del) {
 			case rewrite: {
 				return rewrite;
